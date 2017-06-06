@@ -668,7 +668,7 @@ is_layout_mode_logical (GVariantIter *properties)
         return layout_mode == DISPLAY_LAYOUT_MODE_LOGICAL;
 }
 
-#define MODE_FORMAT "(iiddu)"
+#define MODE_FORMAT "(siiddada{sv})"
 #define MODES_FORMAT "a" MODE_FORMAT
 
 #define MONITOR_SPEC_FORMAT "(ssss)"
@@ -678,7 +678,7 @@ is_layout_mode_logical (GVariantIter *properties)
 #define LOGICAL_MONITOR_FORMAT "(iiduba" MONITOR_SPEC_FORMAT "a{sv})"
 #define LOGICAL_MONITORS_FORMAT "a" LOGICAL_MONITOR_FORMAT
 
-#define CURRENT_STATE_FORMAT "(u" MONITORS_FORMAT LOGICAL_MONITORS_FORMAT "ad" "a{sv})"
+#define CURRENT_STATE_FORMAT "(u" MONITORS_FORMAT LOGICAL_MONITORS_FORMAT "a{sv})"
 
 static int
 get_window_scale_experimental (GnomeXSettingsManager *manager)
@@ -714,7 +714,6 @@ get_window_scale_experimental (GnomeXSettingsManager *manager)
                        NULL,
                        NULL,
                        &logical_monitors,
-                       NULL,
                        &properties);
 
         if (is_layout_mode_logical (properties))
